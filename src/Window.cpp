@@ -18,8 +18,10 @@ Window::Window()
 	initscr();
 	getmaxyx(stdscr, _winY, _winX);
 
-	if (_winX < 121 || _winY < 53)
+	if (_winX < 121 || _winY < 53) {
+		endwin();
 		throw Window::ScreenException();
+	}
 
 	_hostWindow = newwin(_winY/4, _winX/3.2, 0, 0);
 	_osWindowwnd = newwin(_winY/4, _winX/3.2, 0, _winX/3.2 + 2);
